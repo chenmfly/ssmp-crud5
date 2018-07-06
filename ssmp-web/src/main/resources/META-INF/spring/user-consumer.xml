@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd
+		 http://code.alibabatech.com/schema/dubbo
+         http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <mvc:annotation-driven />
+         
+    <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->   
+    <dubbo:application name="user-consumer"/>
+    
+    <!-- 使用multicast组播注册中心暴露服务地址，快速入门  -->
+	<!-- <dubbo:registry address="multicast://224.5.6.7:1234"/> -->
+	<!-- 使用zookeeper注册中心暴露服务地址,即zookeeper的所在服务器ip地址和端口号 -->
+    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"></dubbo:registry>
+    <!-- 配置zookeeper集群 -->
+	<!-- <dubbo:registry protocol="zookeeper" address="192.168.128.128:2181,192.168.128.129:2181,192.168.128.130:2181"></dubbo:registry> -->
+    
+    <!-- 采用@Reference注解的形式获取服务,生成远程服务代理,所以不用使用<dubbo:reference> -->
+	<!--     <dubbo:reference id="personService" interface="org.yf.service.PersonService"/> -->
+	<dubbo:reference interface="com.ssmp.service.TblDeptService" id="tblDeptService"/>
+	<dubbo:reference interface="com.ssmp.service.TblEmpService" id="tblEmpService"/>
+	<dubbo:reference interface="com.ssmp.service.TblEmpPictureService" id="tblEmpPictureService"/>
+	
+	<!-- <dubbo:annotation package="com.ssmp.controller"></dubbo:annotation> -->
+    
+    <!-- 把标记了@Controller注解的类转换为bean -->  
+    <context:component-scan base-package="com.ssmp"/>
+</beans>

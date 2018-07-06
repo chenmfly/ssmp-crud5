@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssmp.dao.TblEmpMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ssmp.entity.TblEmp">
+        <id column="emp_id" property="empId" />
+        <result column="emp_name" property="empName" />
+        <result column="gender" property="gender" />
+        <result column="email" property="email" />
+        <result column="d_id" property="dId" />
+        <result column="rm_flag" property="rmFlag" />
+    </resultMap>
+    <!-- 查询带部门结果列 -->
+    <resultMap id="BaseResultMapWithDept" type="com.ssmp.entity.TblEmp">
+        <id column="emp_id" property="empId" />
+        <result column="emp_name" property="empName" />
+        <result column="gender" property="gender" />
+        <result column="email" property="email" />
+        <result column="d_id" property="dId" />
+        <result column="rm_flag" property="rmFlag" />
+        <association property="tblDept" javaType="com.ssmp.entity.TblDept">
+        	<id column="dept_id" property="deptId" />
+	        <result column="dept_name" property="deptName" />
+	        <result column="rm_flag" property="rmFlag" />
+        </association>
+    </resultMap>
+    <!-- 查询带部门、图片（一对一）数据 -->
+    <resultMap id="BaseResultMapWithDeptAndFile" type="com.ssmp.entity.TblEmp">
+        <id column="emp_id" property="empId"/>
+        <result column="emp_name" property="empName"/>
+        <result column="gender" property="gender"/>
+        <result column="email" property="email"/>
+        <result column="d_id" property="dId"/>
+        <result column="rm_flag" property="rmFlag"/>
+        <association property="tblDept" javaType="com.ssmp.entity.TblDept">
+            <id column="dept_id" property="deptId"/>
+            <result column="dept_name" property="deptName"/>
+            <result column="rm_flag" property="rmFlag"/>
+        </association>
+        <association property="tblEmpPicture" javaType="com.ssmp.entity.TblEmpPicture">
+            <id column="id" property="id"/>
+            <result column="type" property="type"/>
+            <result column="group" property="group"/>
+            <result column="url" property="url"/>
+        </association>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        e.emp_id, e.emp_name, e.gender, e.email, e.d_id, e.rm_flag
+    </sql>
+    <!-- 查询带部门结果列 -->
+    <sql id="Base_Column_List_Dept">
+        e.emp_id, e.emp_name, e.gender, e.email, e.d_id, e.rm_flag, d.dept_id, d.dept_name, d.rm_flag
+    </sql>
+    <!-- 查询带部门、图片（一对一）数据 -->
+    <sql id="Base_Column_List_Dept_File">
+        e.emp_id, e.emp_name, e.gender, e.email, e.d_id, e.rm_flag, d.dept_id, d.dept_name, d.rm_flag, p.id, p.type, p.group, p.url
+    </sql>
+    
+    <!-- 查询带部门结果列 -->
+    <select id="selectTblEmpList" resultMap="BaseResultMapWithDept">
+    	select 
+		<include refid="Base_Column_List_Dept"/>
+		from tbl_emp e left join tbl_dept d on e.d_id = d.dept_id where e.rm_flag = 1
+    </select>
+
+    <!-- 查询带部门、图片（一对一）数据 -->
+    <select id="selectEmpAndFile" parameterType="java.lang.Integer" resultMap="BaseResultMapWithDeptAndFile">
+        select
+        <include refid="Base_Column_List_Dept_File"/>
+        from tbl_emp e
+        left join tbl_dept d on e.d_id = d.dept_id
+        left join tbl_emp_picture p on e.emp_id = p.emp_id
+        where e.rm_flag = 1 and e.emp_id = #{empId}
+    </select>
+
+
+    <insert id="insertEmp" parameterType="com.ssmp.entity.TblEmp" keyProperty="empId" useGeneratedKeys="true">
+        insert into tbl_emp
+        <include refid="insert1"/>
+         values
+        <include refid="insert2"/>
+    </insert>
+
+    <sql id="insert1">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="empName != null">
+                emp_name,
+            </if>
+            <if test="gender != null">
+                gender,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="dId != null">
+                d_id,
+            </if>
+            <if test="rmFlag != null">
+                rm_flag,
+            </if>
+        </trim>
+    </sql>
+    <sql id="insert2">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="empName != null">
+                #{empName},
+            </if>
+            <if test="gender != null">
+                #{gender},
+            </if>
+            <if test="email != null">
+                #{email},
+            </if>
+            <if test="dId != null">
+                #{dId},
+            </if>
+            <if test="rmFlag != null">
+                #{rmFlag},
+            </if>
+        </trim>
+    </sql>
+
+
+
+</mapper>
