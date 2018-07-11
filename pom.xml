@@ -21,7 +21,7 @@
         <dubbo.version>2.5.8</dubbo.version>
         <zookeeper.version>3.4.10</zookeeper.version>
         <zkclient.version>0.10</zkclient.version>
-        <spring.version>4.3.7.RElEASE</spring.version>
+        <spring.version>4.3.10.RELEASE</spring.version>
         <druid.version>1.1.6</druid.version>
         <mybatis-plus.version>2.1.6</mybatis-plus.version>
         <hibernate-validator.version>5.4.1.Final</hibernate-validator.version>
@@ -59,7 +59,7 @@
                 <artifactId>commons-fileupload</artifactId>
                 <version>${commons-fileupload.version}</version>
             </dependency>
-            <dependency>
+            <!--<dependency>
                 <groupId>com.gjxx</groupId>
                 <artifactId>ssmp-api2</artifactId>
                 <version>${current.version}</version>
@@ -73,7 +73,7 @@
                 <groupId>com.gjxx</groupId>
                 <artifactId>ssmp-web</artifactId>
                 <version>${current.version}</version>
-            </dependency>
+            </dependency>-->
             <dependency>
                 <groupId>cn.bestwu</groupId>
                 <artifactId>fastdfs-client-java</artifactId>
@@ -83,6 +83,12 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>dubbo</artifactId>
                 <version>${dubbo.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.apache.zookeeper</groupId>
@@ -152,7 +158,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    <reporting>
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -160,10 +166,10 @@
                 <version>3.0.0</version>
                 <configuration>
                     <findbugsXmlOutput>true</findbugsXmlOutput>
-                    <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
+                    <!--<findbugsXmlWithMessages>true</findbugsXmlWithMessages>-->
                     <xmlOutput>true</xmlOutput>
                 </configuration>
             </plugin>
         </plugins>
-    </reporting>
+    </build>
 </project>

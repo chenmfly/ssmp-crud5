@@ -57,7 +57,12 @@
                 <button type="button" class="layui-btn layui-btn-normal" id="test8">选择文件</button>
                 <%--<button type="button" class="layui-btn" id="test9">开始上传</button>--%>
                 <div class="layui-upload-list">
-                    <img class="layui-upload-img" style="width: 250px;height: auto" id="ylimg" src="${ip}${tblEmp.tblEmpPicture.group}/${tblEmp.tblEmpPicture.url}">
+                    <c:if test="${not empty tblEmp.tblEmpPicture.url}">
+                        <img class="layui-upload-img" style="width: 250px;height: auto" id="ylimg" src="${ip}${tblEmp.tblEmpPicture.group}/${tblEmp.tblEmpPicture.url}"/>
+                    </c:if>
+                    <c:if test="${empty tblEmp.tblEmpPicture.url}">
+                        <img class="layui-upload-img" style="width: 250px;height: auto" id="ylimg" src=""/>
+                    </c:if>
                     <%--<p id="demoText"></p>--%><!-- 重传 -->
                 </div>
             </div>

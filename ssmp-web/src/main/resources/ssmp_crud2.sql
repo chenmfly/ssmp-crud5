@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : publiccms
+Source Server         : ssmp_crud2
 Source Server Version : 50528
 Source Host           : localhost:3306
 Source Database       : ssmp_crud2
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2018-01-17 17:38:25
+Date: 2018-07-05 16:49:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,13 +25,17 @@ CREATE TABLE `tbl_dept` (
   `rm_flag` int(11) DEFAULT '1',
   PRIMARY KEY (`dept_id`),
   KEY `dept_id` (`dept_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tbl_dept
 -- ----------------------------
 INSERT INTO `tbl_dept` VALUES ('4', '开发部', '1');
 INSERT INTO `tbl_dept` VALUES ('5', '测试部', '1');
+INSERT INTO `tbl_dept` VALUES ('6', '市声部', '2');
+INSERT INTO `tbl_dept` VALUES ('7', '市声部', '2');
+INSERT INTO `tbl_dept` VALUES ('8', '市声部', '2');
+INSERT INTO `tbl_dept` VALUES ('9', '测试部', '1');
 
 -- ----------------------------
 -- Table structure for `tbl_emp`
@@ -46,27 +50,28 @@ CREATE TABLE `tbl_emp` (
   `rm_flag` int(11) DEFAULT '1',
   PRIMARY KEY (`emp_id`),
   KEY `fk_emp_dept` (`d_id`),
+  KEY `index_gender` (`gender`),
   CONSTRAINT `fk_emp_dept` FOREIGN KEY (`d_id`) REFERENCES `tbl_dept` (`dept_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1013 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1091 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tbl_emp
 -- ----------------------------
-INSERT INTO `tbl_emp` VALUES ('12', '876329', 'M', '876329@atuguigu', '4', '1');
-INSERT INTO `tbl_emp` VALUES ('13', '9e08810', 'M', '9e08810@atuguigu', '4', '1');
-INSERT INTO `tbl_emp` VALUES ('14', 'df5e711', 'M', 'df5e711@atuguigu', '4', '1');
-INSERT INTO `tbl_emp` VALUES ('15', '18a5212', 'M', '18a5212@atuguigu', '4', '1');
-INSERT INTO `tbl_emp` VALUES ('16', 'aca6113', 'M', 'aca6113@atuguigu', '4', '1');
-INSERT INTO `tbl_emp` VALUES ('17', '2afed14', 'M', '2afed14@atuguigu', '4', '1');
-INSERT INTO `tbl_emp` VALUES ('18', '1ea8f15', 'M', '1ea8f15@atuguigu', '4', '1');
-INSERT INTO `tbl_emp` VALUES ('19', '1b7d716', 'M', '1b7d716@atuguigu', '4', '1');
-INSERT INTO `tbl_emp` VALUES ('20', '6df8a17', 'M', '6df8a17@atuguigu', '4', '1');
-INSERT INTO `tbl_emp` VALUES ('21', 'ec0ca18', 'M', 'ec0ca18@atuguigu', '4', '1');
-INSERT INTO `tbl_emp` VALUES ('22', 'e116719', 'M', 'e116719@atuguigu', '4', '1');
-INSERT INTO `tbl_emp` VALUES ('23', '0172820', 'M', '0172820@atuguigu', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('12', '876329', 'M', '876329@atuguigu.com', '4', '-1');
+INSERT INTO `tbl_emp` VALUES ('13', '9e08810', 'M', '9e08810@atuguigu.com', '4', '-1');
+INSERT INTO `tbl_emp` VALUES ('14', 'df5e711', 'M', 'df5e711@atuguigu.com', '4', '-1');
+INSERT INTO `tbl_emp` VALUES ('15', '18a5212', 'M', '18a5212@atuguigu', '4', '-1');
+INSERT INTO `tbl_emp` VALUES ('16', 'aca6113', 'M', 'aca6113@atuguigu', '4', '-1');
+INSERT INTO `tbl_emp` VALUES ('17', '2afed14', 'M', '2afed14@atuguigu', '4', '-1');
+INSERT INTO `tbl_emp` VALUES ('18', '1ea8f15', 'M', '1ea8f15@atuguigu', '4', '-1');
+INSERT INTO `tbl_emp` VALUES ('19', '1b7d716', 'M', '1b7d716@atuguigu', '4', '-1');
+INSERT INTO `tbl_emp` VALUES ('20', '6df8a17', 'M', '6df8a17@atuguigu.com', '4', '-1');
+INSERT INTO `tbl_emp` VALUES ('21', 'ec0ca18', 'F', 'ec0ca18@atuguigu.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('22', 'e116719', 'F', 'e116719@atuguigu', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('23', '0172820', 'M', '0172820@atuguigu', '4', '-1');
 INSERT INTO `tbl_emp` VALUES ('24', '6fce921', 'M', '6fce921@atuguigu', '4', '1');
-INSERT INTO `tbl_emp` VALUES ('25', 'b766b22', 'M', 'b766b22@atuguigu', '4', '1');
-INSERT INTO `tbl_emp` VALUES ('26', '8c13a23', 'M', '8c13a23@atuguigu', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('25', 'b766b22', 'M', 'b766b22@atuguigu', '4', '-1');
+INSERT INTO `tbl_emp` VALUES ('26', '8c13a23', 'M', '8c13a23@atuguigu.com', '4', '-1');
 INSERT INTO `tbl_emp` VALUES ('27', 'fa07c24', 'M', 'fa07c24@atuguigu', '4', '1');
 INSERT INTO `tbl_emp` VALUES ('28', 'a693325', 'M', 'a693325@atuguigu', '4', '1');
 INSERT INTO `tbl_emp` VALUES ('29', 'ae7fe26', 'M', 'ae7fe26@atuguigu', '4', '1');
@@ -82,12 +87,12 @@ INSERT INTO `tbl_emp` VALUES ('38', '407e135', 'M', '407e135@atuguigu', '4', '1'
 INSERT INTO `tbl_emp` VALUES ('39', 'dece336', 'M', 'dece336@atuguigu', '4', '1');
 INSERT INTO `tbl_emp` VALUES ('40', '5d03e37', 'M', '5d03e37@atuguigu', '4', '1');
 INSERT INTO `tbl_emp` VALUES ('41', '0521538', 'M', '0521538@atuguigu', '4', '1');
-INSERT INTO `tbl_emp` VALUES ('42', 'c92ef39', 'M', 'c92ef39@atuguigu', '4', '1');
-INSERT INTO `tbl_emp` VALUES ('43', 'ffd3d40', 'M', 'ffd3d40@atuguigu', '4', '1');
-INSERT INTO `tbl_emp` VALUES ('44', 'dc52041', 'M', 'dc52041@atuguigu', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('42', 'c92ef39', 'M', 'c92ef39@atuguigu', '4', '-1');
+INSERT INTO `tbl_emp` VALUES ('43', 'ffd3d40', 'M', 'ffd3d40@atuguigu', '4', '-1');
+INSERT INTO `tbl_emp` VALUES ('44', 'dc52041', 'M', 'dc52041@atuguigu', '4', '-1');
 INSERT INTO `tbl_emp` VALUES ('45', '266b042', 'M', '266b042@atuguigu', '4', '1');
-INSERT INTO `tbl_emp` VALUES ('46', '9022943', 'M', '9022943@atuguigu', '4', '1');
-INSERT INTO `tbl_emp` VALUES ('47', '3031044', 'M', '3031044@atuguigu', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('46', '9022943', 'M', '9022943@atuguigu', '4', '-1');
+INSERT INTO `tbl_emp` VALUES ('47', '3031044', 'M', '3031044@atuguigu', '4', '-1');
 INSERT INTO `tbl_emp` VALUES ('48', '6e5b445', 'M', '6e5b445@atuguigu', '4', '1');
 INSERT INTO `tbl_emp` VALUES ('49', '84d6d46', 'M', '84d6d46@atuguigu', '4', '1');
 INSERT INTO `tbl_emp` VALUES ('50', '95f3b47', 'M', '95f3b47@atuguigu', '4', '1');
@@ -1052,4 +1057,91 @@ INSERT INTO `tbl_emp` VALUES ('1008', 'Jerrya', 'M', 'ddddd@qq.com', '4', '1');
 INSERT INTO `tbl_emp` VALUES ('1009', 'dfsdfsdf', 'M', '23423@qq.com', '4', '1');
 INSERT INTO `tbl_emp` VALUES ('1010', 'dfasdfsd', 'M', 'asdfasdfsa@qq.com', '4', '1');
 INSERT INTO `tbl_emp` VALUES ('1011', 'asdfgh', 'M', 'asdfgh@qq.com', '4', '1');
-INSERT INTO `tbl_emp` VALUES ('1012', 'asdfaa', 'M', 'eeeee@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1012', 'asdfaa', 'M', 'eeeee@qq.com', '4', '-1');
+INSERT INTO `tbl_emp` VALUES ('1013', 'ddddfff', 'M', 'ddddfff@qq.com', '4', '-1');
+INSERT INTO `tbl_emp` VALUES ('1014', 'ddddddd', 'M', 'dddd@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1015', 'eeeeeeee', 'M', 'eeeaaaa@qq.com', '4', '-1');
+INSERT INTO `tbl_emp` VALUES ('1016', 'dddddddd', 'M', 'ddd@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1017', 'ddddeee', 'M', 'eeeee@qq.com', '5', '1');
+INSERT INTO `tbl_emp` VALUES ('1018', null, null, null, null, '1');
+INSERT INTO `tbl_emp` VALUES ('1019', null, null, null, null, '1');
+INSERT INTO `tbl_emp` VALUES ('1020', 'qqqqqqq', 'M', 'qqqqqqq@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1021', 'qqqqqqq', 'M', 'qqqqqqq@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1022', 'aaaaaa', 'M', 'aaaaaaa@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1023', 'qqqqqq', 'M', 'qqqqqq@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1024', 'eeeeeee', 'M', 'eeeeeee@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1025', 'eeeeeee', 'M', 'eeeeeee@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1026', 'eeeeee', 'M', 'eeeeee@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1027', 'qqqqqqq', 'M', 'qqqqqqq@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1028', 'qqqqqq', 'M', 'qqqqqq@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1029', 'qqqqqq', 'M', 'qqqqqq@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1030', 'qqqqqq', 'M', 'qqqqqq@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1031', 'qqqqqq', 'M', 'qqqqqq@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1032', 'qqqqqq', 'M', 'qqqqqq@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1045', 'ddddddd', 'M', 'ddddddd@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1052', 'ddddddd', 'M', 'ddddddd@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1054', 'qqqqqqq', 'M', 'qqqqqqq@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1056', 'ccccccc', 'M', 'ccccccc@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1057', 'qqqqqq', 'M', 'qqqqqq@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1058', 'ddddddd', 'M', 'ddddddd@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1059', 'cccccccc', 'M', 'cccccccc@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1060', 'zzzzzzzz', 'M', 'zzzzzzzz@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1061', 'aaaaaaaa', 'M', 'aaaaaaaa@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1062', 'aaaaaaaa', 'M', 'aaaaaaaa@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1063', 'aaaaaaaa', 'M', 'aaaaaaaa@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1064', 'ggggggg', 'M', 'ggggggg@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1065', 'ggggggg', 'M', 'ggggggg@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1066', 'ggggggg', 'M', 'ggggggg@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1067', 'ttttttt', 'M', 'tttttttt@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1068', 'zzzzzzzzzzzz', 'M', 'zzzzzzzzzzzz@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1071', 'yyyyyyy', 'M', 'yyyyyyy@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1072', 'dddddddd', 'M', 'dddddddd@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1073', 'cccccc', 'M', 'cccccc@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1074', 'bbbbbbbbb', 'M', 'bbbbbbbbb@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1075', 'bbbbbbbbb', 'M', 'bbbbbbbbb@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1076', 'bbbbbbbbb', 'M', 'bbbbbbbbb@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1077', 'bbbbbbbbb', 'M', 'bbbbbbbbb@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1078', 'kkkkkkk', 'M', 'kkkkkkk@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1079', 'mmmmmmmmmm', 'M', 'mmmmmmmmm@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1080', 'mmmmmmmmmm', 'M', 'mmmmmmmmm@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1081', 'nnnnnnn', 'M', 'nnnnnnn@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1082', 'nnnnnnn', 'M', 'nnnnnnn@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1083', 'nnnnnnn', 'M', 'nnnnnnn@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1084', 'vvvvvvvvvv', 'M', 'vvvvvvvvvv@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1085', 'aaaaaaaaa', 'M', 'aaaaaaaaa@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1086', 'dddddddd', 'M', 'dddddddd@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1087', 'aaaaaaaaa', 'M', 'aaaaaaaaa@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1088', 'aaaaaaaaa', 'M', 'aaaaaaaaa@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1089', 'aaaaaaaaa', 'M', 'aaaaaaaaa@qq.com', '4', '1');
+INSERT INTO `tbl_emp` VALUES ('1090', 'vvvvvvvvvv', 'M', 'vvvvvvvvvv@qq.com', '4', '1');
+
+-- ----------------------------
+-- Table structure for `tbl_emp_picture`
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_emp_picture`;
+CREATE TABLE `tbl_emp_picture` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `emp_id` int(10) NOT NULL,
+  `group` varchar(50) NOT NULL,
+  `url` varchar(100) NOT NULL,
+  `ext` varchar(10) NOT NULL,
+  `type` int(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tbl_emp_picture
+-- ----------------------------
+INSERT INTO `tbl_emp_picture` VALUES ('1', '1054', 'group1', 'M00/59/A8/wKgqgVs9jDyADwg_AAFLsN9-BHo373.png', 'png', '1');
+INSERT INTO `tbl_emp_picture` VALUES ('2', '1056', 'group1', 'M00/62/97/wKgqgVs9jmiAOGM6AAFLsN9-BHo179.png', 'png', '1');
+INSERT INTO `tbl_emp_picture` VALUES ('3', '1057', 'group1', 'M00/AE/75/wKgqgls9joSAerG4AAFD1uUPNZU198.png', 'png', '1');
+INSERT INTO `tbl_emp_picture` VALUES ('4', '1058', 'group1', 'M00/CA/FB/wKgqgVs9jp2APyeXAAFD1uUPNZU577.png', 'png', '1');
+INSERT INTO `tbl_emp_picture` VALUES ('6', '1060', 'group1', 'M00/93/03/wKgqgVs9juGAExTYAAFLsN9-BHo118.png', 'png', '1');
+INSERT INTO `tbl_emp_picture` VALUES ('10', '1068', 'group1', 'M00/AE/F5/wKgqgls9ktaAbjJAAAFPtgG_lSM669.png', 'png', '1');
+INSERT INTO `tbl_emp_picture` VALUES ('11', '1071', 'group1', 'M00/A1/37/wKgqgVs9mCiARYb9AAFLsN9-BHo036.png', 'png', '1');
+INSERT INTO `tbl_emp_picture` VALUES ('12', '1072', 'group1', 'M00/B6/ED/wKgqgls9mFSAN4XIAAE8JxuLuE4271.png', 'png', '1');
+INSERT INTO `tbl_emp_picture` VALUES ('13', '1083', 'group1', 'M00/E3/A3/wKgqgls9vcqATTwvAAFD1uUPNZU374.png', 'png', '1');
+INSERT INTO `tbl_emp_picture` VALUES ('14', '1084', 'group1', 'M00/AE/5B/wKgqgVs9veqAPLJzAAFLsN9-BHo425.png', 'png', '1');
+INSERT INTO `tbl_emp_picture` VALUES ('15', '1085', 'group1', 'M00/F6/61/wKgqgls9wqeADgJUAAFD1uUPNZU392.png', 'png', '1');
+INSERT INTO `tbl_emp_picture` VALUES ('16', '1086', 'group1', 'M00/26/77/wKgqgVs9wrqAJRCbAAFPtgG_lSM545.png', 'png', '1');
+INSERT INTO `tbl_emp_picture` VALUES ('17', '1090', 'group1', 'M00/B5/95/wKgqgVs92mSAOHC6AAFLsN9-BHo225.png', 'png', '1');
