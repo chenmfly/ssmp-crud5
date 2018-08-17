@@ -94,12 +94,12 @@
 				<!-- 乐观锁插件 -->
 				<bean id="optimisticLockerInterceptor" class="com.baomidou.mybatisplus.plugins.OptimisticLockerInterceptor"></bean>
 				<!-- 性能拦截器，兼打印sql，不生产环境配置 -->
-				<bean id="performanceInterceptor" class="com.baomidou.mybatisplus.plugins.PerformanceInterceptor">
-					<!-- SQL 执行最大时长，超过自动停止运行，有助于发现问题。 -->
+				<!--<bean id="performanceInterceptor" class="com.baomidou.mybatisplus.plugins.PerformanceInterceptor">
+					&lt;!&ndash; SQL 执行最大时长，超过自动停止运行，有助于发现问题。 &ndash;&gt;
 					<property name="maxTime" value="100"></property>
-					<!-- SQL 是否格式化 -->
+					&lt;!&ndash; SQL 是否格式化 &ndash;&gt;
 					<property name="format" value="false"></property>
-				</bean>
+				</bean>-->
 			</array>
 		</property>
 	</bean>

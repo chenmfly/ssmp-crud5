@@ -6,7 +6,7 @@ import javax.imageio.stream.FileImageInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
-public class ATest {
+public class FastDFSTest {
 	/*
 	 * 根据URL获取
 	 */

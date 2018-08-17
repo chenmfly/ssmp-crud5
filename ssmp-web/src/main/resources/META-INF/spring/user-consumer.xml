@@ -19,7 +19,7 @@
     <!-- 使用multicast组播注册中心暴露服务地址，快速入门  -->
 	<!-- <dubbo:registry address="multicast://224.5.6.7:1234"/> -->
 	<!-- 使用zookeeper注册中心暴露服务地址,即zookeeper的所在服务器ip地址和端口号 -->
-    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"></dubbo:registry>
+    <dubbo:registry protocol="zookeeper" address="192.168.243.128:2181"></dubbo:registry>
     <!-- 配置zookeeper集群 -->
 	<!-- <dubbo:registry protocol="zookeeper" address="192.168.128.128:2181,192.168.128.129:2181,192.168.128.130:2181"></dubbo:registry> -->
     
